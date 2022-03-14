@@ -21,8 +21,9 @@ const ListaProductos = () => {
          <NavBar />
          <ContLista>
             <Categorias>
+               <h3 style={{ marginBottom: "15px" }}>Selecciona la categoría:</h3>
                <div className="categoria" onClick={() => setObjeto(products)}>
-                  Ver todo
+                  <b>Ver todo</b>
                </div>
                <div className="categoria" onClick={() => setObjeto(televisores)}>
                   Televisores

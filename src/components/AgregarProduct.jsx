@@ -6,6 +6,7 @@ import { agregarAsyn } from "../redux/actions/actionsProducto";
 import { ContAgregar } from "../styles/agregarStyle";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import Swal from "sweetalert2";
 
 const AgregarProduct = () => {
    const dispatch = useDispatch();
@@ -60,6 +61,11 @@ const AgregarProduct = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
       dispatch(agregarAsyn(values));
+      Swal.fire({
+         title: "Producto agregado exitosamente!",
+         icon: "success",
+         confirmButtonText: "Continuar",
+      });
 
       reset();
    };

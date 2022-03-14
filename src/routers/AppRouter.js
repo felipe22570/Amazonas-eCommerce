@@ -9,7 +9,7 @@ import Login from "../components/Login";
 import Main from "../components/Main";
 import Product from "../components/Product";
 import Registro from "../components/Registro";
-// import PrivateRoutes from "./PrivateRoutes";
+import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 
 const AppRouter = () => {
@@ -45,27 +45,27 @@ const AppRouter = () => {
             <Route
                path="/registro"
                element={
-                  // <PublicRoutes isAuthenticated={isLoggedIn}>
-                  <Registro />
-                  // </PublicRoutes>
+                  <PublicRoutes isAuthenticated={isLoggedIn}>
+                     <Registro />
+                  </PublicRoutes>
                }
             />
 
             <Route
-               path="/"
+               path="/shoppingcart"
                element={
-                  // <PrivateRoutes isAuthenticated={isLoggedIn}>
-                  <Main />
-
-                  // </PrivateRoutes>
+                  <PrivateRoutes isAuthenticated={isLoggedIn}>
+                     <Carrito />
+                  </PrivateRoutes>
                }
             />
+
+            <Route path="/" element={<Main />} />
 
             <Route path="/product/:producto" element={<Product />} />
             <Route path="/agregar" element={<AgregarProduct />} />
             <Route path="/listado" element={<ListaProductos />} />
             <Route path="/search/:element" element={<ListaBuscados />} />
-            <Route path="/shoppingcart" element={<Carrito />} />
          </Routes>
       </BrowserRouter>
    );

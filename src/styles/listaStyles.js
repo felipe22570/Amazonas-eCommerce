@@ -4,7 +4,7 @@ export const ContLista = styled.div`
    width: 95%;
    margin: auto;
    display: grid;
-   grid-template-columns: 15% 75%;
+   grid-template-columns: 18% 72%;
    gap: 10%;
    margin-top: 35px;
 `;
@@ -13,11 +13,15 @@ export const Categorias = styled.div`
    display: flex;
    flex-direction: column;
    gap: 10px;
+   border-right: 2px solid lightgray;
 
    .categoria {
-      border: 1px solid black;
       padding: 0.5rem 1rem 0.5rem 1rem;
       cursor: pointer;
+
+      &:hover {
+         transform: scale(1.1);
+      }
    }
 `;
 

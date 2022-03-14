@@ -23,7 +23,12 @@ export const carritoReducers = (state = initialState, action) => {
 
       case typesCarrito.eliminarCarrito:
          return {
-            products: state.carrito.filter((pro) => pro.codigo !== action.payload),
+            carrito: state.carrito.filter((pro) => pro.codigo !== action.payload),
+         };
+
+      case typesCarrito.vaciarCarrito:
+         return {
+            carrito: [],
          };
 
       default:

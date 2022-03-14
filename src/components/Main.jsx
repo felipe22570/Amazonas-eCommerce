@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import { ContMain } from "../styles/mainStyle";
 import Footer from "./Footer";
 import NavBar from "./NavBar";

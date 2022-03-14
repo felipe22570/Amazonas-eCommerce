@@ -32,6 +32,10 @@ export const ProductInfo = styled.div`
       img {
          width: 100%;
       }
+
+      .zoom {
+         object-fit: contain;
+      }
    }
 
    .details {
@@ -104,6 +108,14 @@ export const Card = styled.div`
    flex-direction: column;
    gap: 4vh;
    width: 10rem;
+
+   button {
+      height: 2rem;
+      background-color: #f0ad64;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+   }
 `;
 
 export const ProductComments = styled.div`

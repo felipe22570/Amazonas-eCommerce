@@ -22,11 +22,6 @@ export const productoReducer = (state = initialState, action) => {
             ...state,
          };
 
-      //    case typesProducts.delete:
-      //       return {
-      //          products: state.products.filter((pro) => pro.codigo !== action.payload),
-      //       };
-
       default:
          return state;
    }

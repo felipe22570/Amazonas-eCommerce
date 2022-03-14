@@ -1,5 +1,3 @@
-// Agregar nuevo producto
-
 import {
    addDoc,
    collection,
@@ -18,7 +16,6 @@ export const agregarCarritoAsyn = (newProduct) => {
       addDoc(collection(db, "carrito"), newProduct)
          .then((resp) => {
             dispatch(agregarCarritoSyn(newProduct));
-            dispatch(listarCarritoAsync());
          })
          .catch((error) => {
             console.log(error);
@@ -76,8 +73,6 @@ export const editarCarritoSyn = (codigo, product) => {
    };
 };
 
-//  // Eliminar
-
 export const eliminarCarritoAsyn = (codigo) => {
    return async (dispatch) => {
       const traerCollection = collection(db, "carrito");
@@ -94,5 +89,23 @@ export const eliminarCarritoSyn = (codigo) => {
    return {
       type: typesCarrito.eliminarCarrito,
       payload: codigo,
+   };
+};
+
+export const vaciarCarritoAsync = () => {
+   return async (dispatch) => {
+      const traerCollection = collection(db, "carrito");
+      const datos = await getDocs(traerCollection);
+      datos.forEach((docu) => {
+         deleteDoc(doc(db, "carrito", docu.id));
+      });
+      dispatch(vaciarCarritoSync());
+   };
+};
+
+export const vaciarCarritoSync = () => {
+   return {
+      type: typesCarrito.vaciarCarrito,
+      payload: {},
    };
 };

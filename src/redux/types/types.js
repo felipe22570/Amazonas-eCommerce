@@ -17,4 +17,5 @@ export const typesCarrito = {
    listarCarrito: "listarCarrito",
    editarCarrito: "editarCarrito",
    eliminarCarrito: "eliminarCarrito",
+   vaciarCarrito: "vaciarCarrito",
 };

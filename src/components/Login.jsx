@@ -4,7 +4,7 @@ import { ContLogin } from "../styles/loginStyle";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { loginFacebook, loginGoogle } from "../redux/actions/actionsLogin";
+import { loginEmailPassword, loginFacebook, loginGoogle } from "../redux/actions/actionsLogin";
 
 const Login = () => {
    const navigate = useNavigate();
@@ -19,7 +19,9 @@ const Login = () => {
          password: Yup.string().required(),
       }),
       onSubmit: (data) => {
-         console.log(data);
+         const { email, password } = data;
+
+         dispatch(loginEmailPassword(email, password));
       },
    });
 

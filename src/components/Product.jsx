@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactImageMagnify from "react-image-magnify";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { agregarCarritoAsyn } from "../redux/actions/actionsCarrito";
 
 import {
@@ -64,18 +64,21 @@ const Product = () => {
             </div>
 
             <div className="image">
-               {/* <img src={imagenPrincipal} alt="" /> */}
                <ReactImageMagnify
                   {...{
                      smallImage: {
                         alt: "Wristwatch by Ted Baker London",
                         isFluidWidth: true,
+                        width: 500,
+                        height: 500,
                         src: imagenPrincipal,
+                        className: "zoom",
                      },
                      largeImage: {
                         src: imagenPrincipal,
                         width: 1200,
                         height: 1800,
+                        className: "zoom",
                      },
                   }}
                />
@@ -132,7 +135,7 @@ const Product = () => {
                   Puede que lo recibas <br /> después de navidad.
                </span>
                <button
-                  style={{ backgroundColor: "#F3D184" }}
+                  style={{ backgroundColor: "#F3D184", cursor: "pointer" }}
                   onClick={(e) => {
                      e.preventDefault();
                      mandarACarrito();
@@ -145,7 +148,13 @@ const Product = () => {
                   />{" "}
                   Agregar al carrito
                </button>
-               <button style={{ backgroundColor: "#F0AD64" }}>
+               <button
+                  style={{ backgroundColor: "#F0AD64", cursor: "pointer" }}
+                  onClick={(e) => {
+                     e.preventDefault();
+                     mandarACarrito();
+                  }}
+               >
                   {" "}
                   <img
                      src="https://res.cloudinary.com/dcane9asx/image/upload/v1646621631/play_djgs2j.png"
@@ -167,6 +176,9 @@ const Product = () => {
                         <img src={p.image1} alt="" />
                         <span style={{ fontSize: "0.75rem", color: "#0E7184" }}>{p.nombre}</span>
                         <h3 style={{ color: "#AF2913" }}>$ {p.precio}</h3>
+                        <Link to={"/product/" + p.codigo}>
+                           <button>Ver producto</button>
+                        </Link>
                      </Card>
                   </div>
                ))}

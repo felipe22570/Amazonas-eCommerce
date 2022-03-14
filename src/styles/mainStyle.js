@@ -19,12 +19,24 @@ export const ContMain = styled.div`
       gap: 10%;
 
       div {
-         border: 1px solid black;
-         width: 20rem;
-         height: 20rem;
+         /* border: 2px solid lightgray; */
+         -webkit-box-shadow: 4px 5px 11px 3px rgba(0, 0, 0, 0.34);
+         box-shadow: 4px 5px 11px 3px rgba(0, 0, 0, 0.34);
+         border-radius: 10px;
+         width: 18rem;
+         height: 18rem;
          display: flex;
          justify-content: center;
          align-items: center;
+         color: black;
+
+         &:hover {
+            background-color: #f0ad64;
+
+            color: white !important;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+         }
 
          h2 {
             text-decoration: none !important;

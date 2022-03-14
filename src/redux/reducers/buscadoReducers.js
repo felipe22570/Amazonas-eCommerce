@@ -6,7 +6,7 @@ const initialState = {
 
 export const buscadoReducers = (state = initialState, action) => {
    switch (action.type) {
-      case typesProducto.buscar:
+      case typesProducto.buscarProducto:
          return {
             ...state,
             buscado: [...action.payload],

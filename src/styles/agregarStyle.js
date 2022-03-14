@@ -35,6 +35,7 @@ export const ContAgregar = styled.div`
          font-size: 0.9rem;
          background-color: #f0ad64;
          border-radius: 5px;
+         border: 1px solid lightgray;
          cursor: pointer;
       }
    }

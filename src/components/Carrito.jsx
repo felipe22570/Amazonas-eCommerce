@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
    editarCarritoAsyn,
    eliminarCarritoAsyn,
    listarCarritoAsync,
+   vaciarCarritoAsync,
 } from "../redux/actions/actionsCarrito";
 import { ContCarrito } from "../styles/carritoStyles";
 import NavBar from "./NavBar";
+import Swal from "sweetalert2";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Carrito = () => {
    const dispatch = useDispatch();
+   const navigate = useNavigate();
    const { carrito } = useSelector((store) => store.carrito);
    const { products } = useSelector((store) => store.productos);
 
@@ -17,7 +22,6 @@ const Carrito = () => {
 
    const aumentar = (elemento) => {
       const [valorInicial] = products.filter((p) => p.codigo === elemento.codigo);
-
       const precioInicial = Number(valorInicial.precio);
 
       const newProduct = elemento;
@@ -30,20 +34,19 @@ const Carrito = () => {
 
    const disminuir = (elemento) => {
       const [valorInicial] = products.filter((p) => p.codigo === elemento.codigo);
-
       const precioInicial = Number(valorInicial.precio);
 
       const newProduct = elemento;
 
-      newProduct.cant = newProduct.cant - 1;
-      newProduct.precio = precioInicial * newProduct.cant;
+      if (newProduct.cant > 1) {
+         newProduct.cant = newProduct.cant - 1;
+         newProduct.precio = precioInicial * newProduct.cant;
+      }
 
       dispatch(editarCarritoAsyn(newProduct.codigo, newProduct));
    };
 
-   useEffect(() => {
-      dispatch(listarCarritoAsync());
-
+   const sumarPrecios = () => {
       let element = 0;
 
       carrito.forEach((elem) => {
@@ -51,6 +54,29 @@ const Carrito = () => {
       });
 
       setPrecioTotal(element);
+   };
+
+   const pagarCarrito = () => {
+      if (Object.keys(carrito).length !== 0) {
+         Swal.fire({
+            title: "Pago realizado exitosamente!",
+            icon: "success",
+            confirmButtonText: "Continuar",
+         });
+         dispatch(vaciarCarritoAsync());
+         navigate("/");
+      } else {
+         Swal.fire({
+            title: "No hay productos en el carrito",
+            icon: "warning",
+            confirmButtonText: "Continuar",
+         });
+      }
+   };
+
+   useEffect(() => {
+      dispatch(listarCarritoAsync());
+      sumarPrecios();
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [carrito]);
 
@@ -73,17 +99,23 @@ const Carrito = () => {
                      <b>$ {c.precio}</b>
                   </span>
                   <button
+                     className="eliminar"
                      onClick={(e) => {
                         e.preventDefault();
                         dispatch(eliminarCarritoAsyn(c.codigo));
                      }}
                   >
-                     Eliminar
+                     <DeleteIcon sx={{ color: "white" }} />
                   </button>
                </div>
             ))}
 
-            <h1>Precio total: {precioTotal}</h1>
+            <div className="pagar">
+               <h3 className="precioTotal">
+                  Precio total: <span style={{ color: "#AF2913" }}>$ {precioTotal}</span>
+               </h3>
+               <button onClick={() => pagarCarrito()}>Pagar</button>
+            </div>
          </ContCarrito>
       </>
    );

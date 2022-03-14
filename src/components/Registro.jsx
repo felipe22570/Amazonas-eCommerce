@@ -55,7 +55,7 @@ const Registro = () => {
                <br />
                <button type="submit">Enviar</button>
             </form>
-            <Link to="/">Volver a inicio</Link>
+            <Link to="/login">Volver a inicio</Link>
          </div>
       </ContLogin>
    );

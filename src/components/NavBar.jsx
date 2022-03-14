@@ -76,6 +76,8 @@ const NavBar = () => {
             setContainerLogout("box-login");
          } else {
             setUsuario("Identificate");
+            setContainerLogin("box-login");
+            setContainerLogout("hidden");
          }
       };
       verificarUsuario();
@@ -134,6 +136,7 @@ const NavBar = () => {
                               Eres un cliente nuevo? <Link to="/registro">Empieza aqui</Link>
                            </p>
                         </div>
+
                         <div className={containerLogout}>
                            <button onClick={handleLogout}>Salir</button>
                         </div>
